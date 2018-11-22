@@ -1,0 +1,10 @@
+{
+  "name": "css-modules-react-styled",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.6.0"
+  }
+}

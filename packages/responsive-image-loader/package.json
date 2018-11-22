@@ -1,0 +1,12 @@
+{
+  "name": "responsive-image-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "responsive-loader": "1.1.0",
+    "sharp": "0.21.0"
+  },
+  "types": "./responsive-image-loader.d.ts"
+}

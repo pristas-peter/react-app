@@ -1,0 +1,10 @@
+{
+  "name": "css-modules-typings-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "humps": "2.0.1"
+  }
+}

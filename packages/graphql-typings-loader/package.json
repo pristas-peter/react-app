@@ -1,0 +1,16 @@
+{
+  "name": "graphql-typings-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "graphql": "^14.0.0"
+  },
+  "dependencies": {
+    "apollo-codegen-core": "0.28.1",
+    "apollo-codegen-typescript": "0.28.1",
+    "apollo-codegen-typescript-legacy": "0.28.1",
+    "pify": "4.0.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "watcher-webpack-plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "webpack": "^4.0.0"
+  },
+  "dependencies": {
+    "chokidar": "^2.0.0",
+    "memory-fs": "0.4.1",
+    "tmp-promise": "1.0.5"
+  }
+}
