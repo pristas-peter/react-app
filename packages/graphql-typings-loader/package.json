@@ -1,6 +1,6 @@
 {
   "name": "graphql-typings-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
