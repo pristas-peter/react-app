@@ -1,6 +1,6 @@
 # css-modules-typings-loader
 
-Webpack loader to generate TS typings of local classnames as [filename].d.ts file alongside source file. If d.ts file contains GraphQL enums, they are also extracted to [filename].types.ts file so they can be used in TS code.
+Webpack loader to generate TS typings of local classnames as [filename].d.ts file alongside source file.
 
 <br />
 To use this loader add it to chain after css-loader.
