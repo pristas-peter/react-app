@@ -1,5 +1,5 @@
 const {cloneDeepWith: visitor} = require('lodash');
-const create = require('babel-preset-react-app');
+const create = require('babel-preset-react-app/dependencies');
 
 module.exports = function(...args) {
     const preset = create(...args);
