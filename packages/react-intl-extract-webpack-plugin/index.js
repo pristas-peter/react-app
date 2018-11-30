@@ -21,6 +21,7 @@ class ReactIntlExtractWebpackPlugin {
         this.moduleDescriptorIds = new WeakMap();
         this.descriptors = new Map();
         this.translations = {};
+        this.initialChunkGroupNames = new Set();
     }
 
     assetPath(name, content) {
@@ -65,10 +66,16 @@ class ReactIntlExtractWebpackPlugin {
                 // load translations that were needed in this compilation phase
                 const promise = this.loadTranslations(this.descriptors.values());
                 
+                this.initialChunkGroupNames.clear();
+    
                 // extract descriptor ids per chunkGroup
                 const idsPerChunkGroup = new Map();
                                         
                 for (const chunkGroup of compilation.chunkGroups) {
+                    if (chunkGroup.isInitial()) {
+                        this.initialChunkGroupNames.add(chunkGroup.name);
+                    }
+
                     for (const chunk of chunkGroup.chunks) {
                         for (const mod of chunk.getModules()) {
                             const ids = this.moduleDescriptorIds.get(mod);
@@ -149,14 +156,24 @@ class ReactIntlExtractWebpackPlugin {
 
             const { mainTemplate, hotUpdateChunkTemplate } = compilation;
 
-            mainTemplate.hooks.localVars.tap(IDENTIFIER, (source, chunk) => {
-                const code = typeof chunk.id === 'string' ? `"${chunk.id}"` : chunk.id; 
+            mainTemplate.hooks.localVars.tap(IDENTIFIER, (source) => {
+                let args = []; 
+
+                this.initialChunkGroupNames.forEach(name => {
+                    if (typeof name === 'string') {
+                        args.push(`"${name}"`);
+                    } else {
+                        args.push(name);
+                    }
+                })
+
                 return Template.asString([
                     source,
                     '',
                     '// localVars',
                     `__webpack_require__.intlManifest = ${JSON.stringify(this.manifest)};`,
-                    `__webpack_require__.intlChunkLoader = __webpack_require__.intlChunkLoader || [${code}];`,
+                    `__webpack_require__.intlChunkLoader = __webpack_require__.intlChunkLoader || [];`,
+                    args.length ? `__webpack_require__.intlChunkLoader.push(${args.join(',')});` : '',
                 ]);
             });
 
