@@ -1,9 +1,9 @@
 /// <reference types="webpack-env" />
 
-type ChunkId = string | number;
+type Chunk = string;
 
 export interface Manifest {
-    [chunkId: string]: {
+    [chunk: string]: {
         [locale: string]: string;
     }
 }
@@ -21,25 +21,25 @@ export interface Cached {
 }
 
 export class IntlChunkLoader {
-    chunkIdsToLoad: Set<ChunkId>;
+    chunksToLoad: Set<Chunk>;
     manifest: Manifest;
     cache: Messages;
     locale?: string;
-    loadedChunksPerLocale: Map<string, Set<ChunkId>>;
+    loadedChunksPerLocale: Map<string, Set<Chunk>>;
 
-    constructor(manifest: Manifest, chunkIds: ChunkId[] = [], cached: Cached = {}) {
+    constructor(manifest: Manifest, chunks: Chunk[] = [], cached: Cached = {}) {
         this.manifest = manifest;
-        this.chunkIdsToLoad = new Set(chunkIds);
+        this.chunksToLoad = new Set(chunks);
         this.cache = {};
         this.loadedChunksPerLocale = new Map();
 
         if (cached) {
-            Object.keys(cached).forEach(chunkId => {
-                const cachedMessages = cached[chunkId];
+            Object.keys(cached).forEach(chunk => {
+                const cachedMessages = cached[chunk];
                 this.updateCache(cachedMessages);
 
                 Object.keys(cachedMessages).forEach(locale => {
-                    this.setChunkIdAsLoaded(chunkId, locale);
+                    this.setChunkAsLoaded(chunk, locale);
                 })
             })
         }
@@ -54,20 +54,20 @@ export class IntlChunkLoader {
         });
     }
 
-    setChunkIdAsLoaded(chunkId: ChunkId, locale: string) {
+    setChunkAsLoaded(chunk: Chunk, locale: string) {
         const set = this.loadedChunksPerLocale.get(locale);
         if (set) {
-            set.add(chunkId);
+            set.add(chunk);
         } else {
-            this.loadedChunksPerLocale.set(locale, new Set([chunkId]));
+            this.loadedChunksPerLocale.set(locale, new Set([chunk]));
         }
     }
 
-    load = (chunkId: ChunkId, locale: string) => {
+    load = (chunk: Chunk, locale: string) => {
         const loadedChunks = this.loadedChunksPerLocale.get(locale);
-        const src = this.manifest[chunkId] && this.manifest[chunkId][locale];
+        const src = this.manifest[chunk] && this.manifest[chunk][locale];
 
-        if (!src || (loadedChunks && loadedChunks.has(chunkId))) {
+        if (!src || (loadedChunks && loadedChunks.has(chunk))) {
             return Promise.resolve();
         }
 
@@ -81,7 +81,7 @@ export class IntlChunkLoader {
                         [locale]: JSON.parse(request.responseText),
                     });
 
-                    this.setChunkIdAsLoaded(chunkId, locale);
+                    this.setChunkAsLoaded(chunk, locale);
 
                 } catch (e) {
                     reject(e);
@@ -96,27 +96,28 @@ export class IntlChunkLoader {
     }
 
     loadPending(locale: string): Promise<void> {
-        const size = this.chunkIdsToLoad.size;
+        const size = this.chunksToLoad.size;
 
-        return Promise.all(Array.from(this.chunkIdsToLoad).map(chunkId => this.load(chunkId, locale)))
+        return Promise.all(Array.from(this.chunksToLoad).map(chunk => this.load(chunk, locale)))
             .then(() => {
-                if (this.chunkIdsToLoad.size > size) {
+                if (this.chunksToLoad.size > size) {
                     return this.loadPending(locale);
                 }
             });
     }
 
     setLocale(locale: string) {
-        return this.loadPending(locale).then(() => {
-            this.locale = locale;
-        });
+        return this.loadPending(locale)
+            .then(() => {
+                this.locale = locale;
+            });
     }
 
-    push(chunkId: ChunkId) {
-        this.chunkIdsToLoad.add(chunkId);
+    push(chunk: Chunk) {
+        this.chunksToLoad.add(chunk);
 
         if (this.locale) {
-            return this.load(chunkId, this.locale);
+            return this.load(chunk, this.locale);
         }
 
         return Promise.resolve();
