@@ -190,8 +190,11 @@ class ReactIntlExtractWebpackPlugin {
                 });
 
                 // add messages to assets
-                const json = JSON.stringify(messages);
-                this.assets[this.assetPath(`messages.[hash].json`, json)] = json;
+                let json = JSON.stringify(messages);
+                this.assets[this.assetPath(`react-intl-messages.[hash].json`, json)] = json;
+
+                json = JSON.stringify(chunkGroupNameMessages);
+                this.assets[this.assetPath(`react-intl-chunkgroup-messages.[hash].json`, json)] = json;
             });
 
             const { mainTemplate, hotUpdateChunkTemplate } = compilation;
