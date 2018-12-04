@@ -22,6 +22,9 @@ composer.lock
 
 node_modules/
 build
+dist
+esm
+cjs
 lerna-debug.log
 npm-debug.log*
 yarn-debug.log*
