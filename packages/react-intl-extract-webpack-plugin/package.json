@@ -4,14 +4,15 @@
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
   "main": "./index.js",
+  "peerDependencies": {
+    "webpack": "^4.0.0"
+  },
   "dependencies": {
     "intl-messageformat-parser": "1.4.0",
     "loader-utils": "1.1.0",
-    "webpack": "^4.0.0",
     "webpack-sources": "^1.3.0"
   },
   "scripts": {
     "prepublish": "cd browser && yarn && yarn build"
-  },
-  "gitHead": "181abb32456442ea8bf2cad646f59e2f7a89733a"
+  }
 }
