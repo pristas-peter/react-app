@@ -1,17 +1,17 @@
 {
   "name": "react-intl-extract-webpack-plugin",
   "version": "1.0.4",
-  "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
+  "main": "./index.js",
   "dependencies": {
     "intl-messageformat-parser": "1.4.0",
     "loader-utils": "1.1.0",
     "webpack": "^4.0.0",
     "webpack-sources": "^1.3.0"
   },
-  "devDependencies": {
-    "@types/webpack-env": "1.13.6",
-    "typescript": "3.2.1"
+  "scripts": {
+    "prepare": "cd browser && yarn",
+    "build": "cd browser && yarn build"
   }
 }

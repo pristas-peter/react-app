@@ -1,0 +1,20 @@
+{
+  "name": "browser",
+  "version": "1.0.0",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -r cjs esm 2> /dev/null; yarn tsc && yarn tsc -P tsconfig.es.json"
+  },
+  "dependencies": {
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.1",
+    "@types/react": "16.7.13",
+    "@types/webpack-env": "1.13.6"
+  },
+  "private": true
+}
