@@ -1,7 +1,6 @@
 # responsive-image-loader
 
-Webpack loader to create responsive images. Uses responsive-loader under the hood with custom predefined options. Created for the purpose of react-scripts-ext package.
-
+Webpack loader to create responsive images. Uses responsive-loader under the hood with custom predefined options.
 <br />
 Can be used with babel-plugin-named-asset-import to export responsiveImage instance like so:
 
