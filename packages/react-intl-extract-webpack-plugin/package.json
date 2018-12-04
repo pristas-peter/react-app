@@ -13,5 +13,6 @@
   "scripts": {
     "prepare": "cd browser && yarn",
     "build": "cd browser && yarn build"
-  }
+  },
+  "gitHead": "181abb32456442ea8bf2cad646f59e2f7a89733a"
 }
