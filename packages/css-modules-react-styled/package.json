@@ -4,6 +4,7 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "scripts": {
+    "prepublish": "yarn build",
     "build": "rm -r cjs esm 2> /dev/null; yarn tsc && yarn tsc -P tsconfig.es.json"
   },
   "author": "Peter Pristas <pristas.peter@gmail.com>",
