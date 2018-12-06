@@ -1,6 +1,6 @@
 {
   "name": "css-modules-modify-specificity-loader",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "main": "./index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT"

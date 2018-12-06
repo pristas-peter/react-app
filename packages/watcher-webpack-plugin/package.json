@@ -1,6 +1,6 @@
 {
   "name": "watcher-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",

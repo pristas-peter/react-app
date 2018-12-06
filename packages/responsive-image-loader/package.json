@@ -1,6 +1,6 @@
 {
   "name": "responsive-image-loader",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
