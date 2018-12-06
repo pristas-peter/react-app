@@ -34,7 +34,7 @@ class ReactIntlExtractWebpackPlugin {
     assetPath(name, content, atRoot = false) {
         const asset = `${name.replace(/\.\[hash\]/, this.options.development ? '' : '.' + getHashDigest(content))}`;
 
-        if (asRoot) {
+        if (atRoot) {
             return asset;
         }
 
