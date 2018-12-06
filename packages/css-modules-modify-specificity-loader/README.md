@@ -15,14 +15,14 @@ Let's have these source files:
 * b.module.css
     ```
     .test2 {
-        composes: test from "a.module.css";
+        composes: test from "./a.module.css";
         background-color: blue;
     }
     ```
 * c.module.css
     ```
     .test3 {
-        composes: test from "b.module.css";
+        composes: test2 from "./b.module.css";
         background-color: green;
     }
     ```

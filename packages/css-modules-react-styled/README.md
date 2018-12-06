@@ -28,7 +28,7 @@ export default Styled(defaultStyles)(Test);
 fragment.module.css
 ```
 .fragment { // <- name of the class does not matter
-    composes: test from '.test.module.css';
+    composes: test from './test.module.css';
     background-color: red;
 }
 
@@ -76,7 +76,7 @@ parent.tsx
 import * as React from 'react';
 import Test from './test';
 import Fragment from './fragment';
-import defaultStyles from 'parent.module.css';
+import defaultStyles from './parent.module.css';
 
 const TestProvider = Test.compose(defaultStyles); // <- affects all children of Test down under, it is possible to target only certain children of Test with css selectors in parent.module.css 
 
@@ -96,9 +96,9 @@ export default Styled(defaultStyles)(Parent);
 
 ```
 ... and so on
-````
+```
 
-## API in a nutshell
+## API
 
 ```
 interface Styles {
