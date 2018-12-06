@@ -31,8 +31,14 @@ class ReactIntlExtractWebpackPlugin {
      * @param {string} name 
      * @param {string} content 
      */
-    assetPath(name, content) {
-        return `${this.options.outputPath}${name.replace(/\.\[hash\]/, this.options.development ? '' : '.' + getHashDigest(content))}`;
+    assetPath(name, content, atRoot = false) {
+        const asset = `${name.replace(/\.\[hash\]/, this.options.development ? '' : '.' + getHashDigest(content))}`;
+
+        if (asRoot) {
+            return asset;
+        }
+
+        return `${this.options.outputPath}${asset}`;
     }
 
     apply(compiler) {
@@ -46,8 +52,11 @@ class ReactIntlExtractWebpackPlugin {
             try {
                 this.loadTranslations = require(translationsModuleFilename);
             } catch (e) {
-                compilation.warnings.push(`[${IDENTIFIER}]: Could not import translations load function. Make sure that '${translationsModuleFilename}' file exists.`) 
-                this.loadTranslations = () => Promise.resolve();
+                if (e.code !== 'MODULE_NOT_FOUND') {
+                    this.loadTranslations = () => Promise.resolve();
+                } else {
+                    throw e;
+                }
             }
             
             // add metadata subscriber function to module's loader context
@@ -189,16 +198,18 @@ class ReactIntlExtractWebpackPlugin {
                     });
                 });
 
-                // add messages to assets
+                // add additional assets
                 let json = JSON.stringify(messages);
-                this.assets[this.assetPath(`react-intl-messages.[hash].json`, json)] = json;
+                this.assets[this.assetPath(`react-intl-messages.[hash].json`, json, true)] = json;
 
                 json = JSON.stringify(chunkGroupNameMessages);
-                this.assets[this.assetPath(`react-intl-chunkgroup-messages.[hash].json`, json)] = json;
+                this.assets[this.assetPath(`react-intl-chunkgroup-messages.[hash].json`, json, true)] = json;
+
+                json = JSON.stringify(this.manifest);
+                this.assets[this.assetPath(`react-intl-manifest.[hash].json`, json, true)] = json;
             });
 
             const { mainTemplate, hotUpdateChunkTemplate } = compilation;
-
 
             // read the webpack source for more info: MainTemplate.js
             mainTemplate.hooks.localVars.tap(IDENTIFIER, (source) => {
