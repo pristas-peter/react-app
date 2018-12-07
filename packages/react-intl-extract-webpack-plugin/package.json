@@ -1,6 +1,6 @@
 {
   "name": "react-intl-extract-webpack-plugin",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
   "main": "./index.js",
