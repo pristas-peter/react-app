@@ -15,6 +15,7 @@ class ReactIntlExtractWebpackPlugin {
         this.options = {
             development: process.env.NODE_ENV === 'development',
             outputPath: 'static/intl/',
+            suffix: '',
             ...options,
         };
 
@@ -31,14 +32,12 @@ class ReactIntlExtractWebpackPlugin {
      * @param {string} name 
      * @param {string} content 
      */
-    assetPath(name, content, atRoot = false) {
-        const asset = `${name.replace(/\.\[hash\]/, this.options.development ? '' : '.' + getHashDigest(content))}`;
+    assetPath(name, content) {
+        return `${this.options.outputPath}${name.replace(/\.\[hash\]/, this.options.development ? '' : '.' + getHashDigest(content))}`;
+    }
 
-        if (atRoot) {
-            return asset;
-        }
-
-        return `${this.options.outputPath}${asset}`;
+    suffix(name) {
+        return name.replace(/\.\[suffix\]/, this.options.suffix || '');
     }
 
     apply(compiler) {
@@ -199,14 +198,16 @@ class ReactIntlExtractWebpackPlugin {
                 });
 
                 // add additional assets
-                let json = JSON.stringify(messages);
-                this.assets[this.assetPath(`react-intl-messages.[hash].json`, json, true)] = json;
+                const stringify = (input) => JSON.stringify(input, null, 2);
 
-                json = JSON.stringify(chunkGroupNameMessages);
-                this.assets[this.assetPath(`react-intl-chunkgroup-messages.[hash].json`, json, true)] = json;
+                let json = stringify(messages);
+                this.assets[this.suffix('react-intl-messages.[suffix].json')] = json;
 
-                json = JSON.stringify(this.manifest);
-                this.assets[this.assetPath(`react-intl-manifest.[hash].json`, json, true)] = json;
+                json = stringify(chunkGroupNameMessages);
+                this.assets[this.suffix('react-intl-chunkgroup-messages.[suffix].json')] = json;
+
+                json = stringify(this.manifest);
+                this.assets[this.suffix('react-intl-manifest.json.[suffix].json')] = json;
             });
 
             const { mainTemplate, hotUpdateChunkTemplate } = compilation;

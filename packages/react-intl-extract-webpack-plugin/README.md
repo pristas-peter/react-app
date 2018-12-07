@@ -102,7 +102,7 @@ It is possible to dynamically change locale after bootstrap, chunkLoader stores 
 
 <br />
 
-For SSR you can use **react-intl-messages.[hash].json** with all translations file and manifest file **react-intl-chunkgroup-messages.[hash].json** which is generated during build.
+For SSR you can use **react-intl-messages.[suffix].json** with all translations, manifest file **react-intl-manifest.[suffix].json** and **react-intl-chunkgroup-messages.[suffix].json** which are generated during build.
 
 <br />
 
@@ -111,5 +111,6 @@ Webpack plugin also accepts options (defaults are):
 {
     development: process.env.NODE_ENV === 'development',
     outputPath: 'static/intl/',
+    suffix: '',
 }
 ```
