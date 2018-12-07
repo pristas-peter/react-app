@@ -37,7 +37,7 @@ class ReactIntlExtractWebpackPlugin {
     }
 
     suffix(name) {
-        return name.replace(/\.\[suffix\]/, this.options.suffix || '');
+        return name.replace(/\.\[suffix\]/, (this.options.suffix && `.${this.options.suffix}`) || '');
     }
 
     apply(compiler) {
@@ -207,7 +207,7 @@ class ReactIntlExtractWebpackPlugin {
                 this.assets[this.suffix('react-intl-chunkgroup-messages.[suffix].json')] = json;
 
                 json = stringify(this.manifest);
-                this.assets[this.suffix('react-intl-manifest.json.[suffix].json')] = json;
+                this.assets[this.suffix('react-intl-manifest.[suffix].json')] = json;
             });
 
             const { mainTemplate, hotUpdateChunkTemplate } = compilation;
