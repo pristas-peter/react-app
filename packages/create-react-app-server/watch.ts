@@ -1,23 +1,27 @@
 import * as webpack from 'webpack';
-import {request as http} from 'http';
-import {request as https} from 'https';
+import fetch, { Response } from 'node-fetch';
 import * as path from 'path';
 import * as Koa from 'koa';
 import * as koaWebpack from 'koa-webpack';
+
+export class ReadAssetError extends Error {
+    constructor(public response: Response) {}
+}
 
 export default function watch(
     config: webpack.Configuration,
     host = '0.0.0.0',
     port = 5000,
-    devHost = '127.0.0.1',
-    devPort = 3000,
+    devUrl = 'http://127.0.0.1:3000/',
 ) {
-
     return koaWebpack({
-        compiler: webpack(config) as any,
+        compiler: webpack({
+            entry: [
+                path.join()
+            ]
+        }) as any,
         devMiddleware: {
             logLevel: 'info',
-            writeToDisk: true,
             serverSideRender: true,
             stats: 'minimal',
         } as any,
@@ -25,19 +29,27 @@ export default function watch(
     })
         .then(middleware => {
             const fs = middleware.devMiddleware.fileSystem;
-
             const app = new Koa();
 
             app.use(middleware);
             app.use((context, next) => {
-                context.readAsset = (asset: string) => {
-        
-                };
+                context.readAsset = (asset: string) => 
+                    fetch(`${devUrl}${asset}`).then(response => {
+                        if (response.ok) {
+                            if (asset.endsWith('.json')) {
+                                return response.json();
+                            }
 
-                console.log(config.output);
+                            return response.text();
+                        }
+                        return Promise.reject(new ReadAssetError(response))
+                    });
 
+                console.log(fs, config.output);
                 return next();
             });
+
+            app.listen(port, host);
         });
 
 }
