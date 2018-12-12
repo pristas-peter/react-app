@@ -1,0 +1,28 @@
+{
+  "name": "create-react-app-server",
+  "version": "1.0.0",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "author": "Peter Pristas <pristas.peter@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-scripts": "2.1.1"
+  },
+  "dependencies": {
+    "@types/koa": "^2.0.47",
+    "@types/koa-webpack": "^5.0.1",
+    "@types/lodash": "^4.14.119",
+    "koa": "^2.6.2",
+    "koa-webpack": "^5.1.1",
+    "lodash": "4.17.11"
+  },
+  "devDependencies": {
+    "@types/node": "10.12.12",
+    "@types/webpack": "4.4.20",
+    "typescript": "3.2.1"
+  },
+  "scripts": {
+    "prepublish": "yarn build",
+    "build": "rm -r cjs esm 2> /dev/null; yarn tsc && yarn tsc -P tsconfig.es.json"
+  }
+}
