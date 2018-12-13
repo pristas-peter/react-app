@@ -33,7 +33,7 @@ function outputFile(stats: webpack.Stats) {
     return path.join(outputPath, main);
 }
 
-export default function watch(
+export function watch(
     config: webpack.Configuration,
     host = '0.0.0.0',
     port = 5000,
