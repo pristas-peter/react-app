@@ -1,22 +1,23 @@
 {
-  "name": "create-react-app-server",
-  "version": "1.0.14",
+  "name": "ssr-webpack-dev-server",
+  "version": "1.0.0",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "webpack": "^4.0.0"
   },
   "dependencies": {
     "@types/koa": "^2.0.47",
     "@types/koa-webpack": "^5.0.1",
-    "@types/lodash": "^4.14.119",
     "@types/node-fetch": "^2.1.4",
     "koa": "^2.6.2",
     "koa-webpack": "^5.1.1",
     "lodash": "4.17.11",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "tslib": "1.9.3"
   },
   "devDependencies": {
     "@types/node": "10.12.12",
