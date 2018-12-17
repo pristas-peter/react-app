@@ -10,6 +10,7 @@
     "webpack": "^4.0.0"
   },
   "dependencies": {
+    "@types/compression": "^0.0.36",
     "compression": "1.7.3",
     "express": "^4.16.4",
     "http-proxy": "^1.17.0",
@@ -30,5 +31,6 @@
   "scripts": {
     "prepublish": "yarn build",
     "build": "rm -r cjs esm 2> /dev/null; yarn tsc && yarn tsc -P tsconfig.es.json"
-  }
+  },
+  "gitHead": "aca7086061033545c39b7f90b1d8cdfc54d89ad8"
 }
