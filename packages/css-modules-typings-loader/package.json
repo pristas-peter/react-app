@@ -6,5 +6,6 @@
   "license": "MIT",
   "dependencies": {
     "humps": "2.0.1"
-  }
+  },
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }

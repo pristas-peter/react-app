@@ -32,5 +32,5 @@
     "prepublish": "yarn build",
     "build": "rm -r cjs esm 2> /dev/null; yarn tsc && yarn tsc -P tsconfig.es.json"
   },
-  "gitHead": "aca7086061033545c39b7f90b1d8cdfc54d89ad8"
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }

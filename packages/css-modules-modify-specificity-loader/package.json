@@ -3,5 +3,6 @@
   "version": "1.1.1",
   "main": "./index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }

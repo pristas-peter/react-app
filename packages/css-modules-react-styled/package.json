@@ -19,5 +19,6 @@
     "@types/node": "10.12.12",
     "@types/react": "^16.7.13",
     "typescript": "^3.0.0"
-  }
+  },
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }

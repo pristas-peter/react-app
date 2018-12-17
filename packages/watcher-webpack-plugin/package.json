@@ -11,5 +11,6 @@
     "chokidar": "^2.0.0",
     "memory-fs": "0.4.1",
     "tmp-promise": "1.0.5"
-  }
+  },
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }

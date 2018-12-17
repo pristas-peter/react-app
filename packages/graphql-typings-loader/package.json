@@ -12,5 +12,6 @@
     "apollo-codegen-typescript": "0.28.1",
     "apollo-codegen-typescript-legacy": "0.28.1",
     "pify": "4.0.1"
-  }
+  },
+  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
 }
