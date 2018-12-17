@@ -4,5 +4,6 @@
   "private": true,
   "devDependencies": {
     "lerna": "^3.4.3"
-  }
+  },
+  "name": "react-webpack-utils"
 }
