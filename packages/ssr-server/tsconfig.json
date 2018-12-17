@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "outDir": "./cjs",
+      "declaration": true,
+      "strict": true,
+      "jsx": "react",
+      "lib": ["esnext", "dom"],
+      "moduleResolution": "node",
+      "importHelpers": true
+    },
+    "exclude": ["node_modules", "cjs", "es", "**/__tests__/*"]
+  }
