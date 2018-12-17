@@ -59,62 +59,73 @@ export function watch(
     webpackDevserverUrl = 'http://localhost:3000/',
 ) {
 
-    let lastEndTime: webpack.Stats['endTime'];
-    let serverMiddleware: express.RequestHandler;
-    
-    const app = express();
-    const proxy = httpProxy.createProxyServer({
-        target: webpackDevserverUrl,
-        ws: true,
-    });
-
-    app.use(compression());
-
-    app.use(middleware(webpack(config) as any, {
-        logLevel: 'info',
-        serverSideRender: true,
-        stats: 'minimal',
-    } as any));
-
-    app.use((req, res, next) => {
-        const {fs, webpackStats} = res.locals as {fs: any, webpackStats: webpack.Stats};
+    return new Promise((resolve, reject) => {
+        let lastEndTime: webpack.Stats['endTime'];
+        let serverMiddleware: express.RequestHandler;
         
-        res.locals.readAsset = (asset: string) => 
-        fetch(`${webpackDevserverUrl}${asset}`).then(response => {
-            if (response.ok) {
-                if (asset.endsWith('.json')) {
-                    return response.json();
-                }
-
-                return response.text();
-            }
-            return Promise.reject(new AssetReadError(response))
+        const app = express();
+        const proxy = httpProxy.createProxyServer({
+            target: webpackDevserverUrl,
+            ws: true,
         });
-
-        if (lastEndTime !== webpackStats.endTime) {
-            const filename = outputFile(webpackStats);
-            const mapFilename = `${filename}.map`;
-
-            if (fs.existsSync(mapFilename)) {
-                sourceMap.set(filename, fs.readFileSync(mapFilename));
+    
+        app.use(compression());
+    
+        app.use(middleware(webpack(config) as any, {
+            logLevel: 'info',
+            serverSideRender: true,
+            stats: 'minimal',
+        } as any));
+    
+        app.use((req, res, next) => {
+            const {fs, webpackStats} = res.locals as {fs: any, webpackStats: webpack.Stats};
+            
+            res.locals.readAsset = (asset: string) => 
+            fetch(`${webpackDevserverUrl}${asset}`).then(response => {
+                if (response.ok) {
+                    if (asset.endsWith('.json')) {
+                        return response.json();
+                    }
+    
+                    return response.text();
+                }
+                return Promise.reject(new AssetReadError(response))
+            });
+    
+            if (lastEndTime !== webpackStats.endTime) {
+                const filename = outputFile(webpackStats);
+                const mapFilename = `${filename}.map`;
+    
+                if (fs.existsSync(mapFilename)) {
+                    sourceMap.set(filename, fs.readFileSync(mapFilename));
+                }
+    
+                serverMiddleware = runInThisContext(fs.readFileSync(filename), filename).default;
+            }
+    
+            lastEndTime = webpackStats.endTime;
+            serverMiddleware(req, res, next);
+        });
+    
+        app.use((req, res) => {
+            proxy.web(req, res);
+        });
+    
+        const server = http.createServer(app)
+    
+        server.on('upgrade', function (req, socket, head) {
+            proxy.ws(req, socket, head);
+        });
+    
+        server.listen(port, host, (err?: Error) => {
+            if (err) {
+                reject(err);
+                return;
             }
 
-            serverMiddleware = runInThisContext(fs.readFileSync(filename), filename).default;
-        }
-
-        lastEndTime = webpackStats.endTime;
-        serverMiddleware(req, res, next);
+            resolve();
+        });
     });
 
-    app.use((req, res) => {
-        proxy.web(req, res);
-    });
-
-    const server = http.createServer(app)
-
-    server.on('upgrade', function (req, socket, head) {
-        proxy.ws(req, socket, head);
-    });
-
-    server.listen(port, host);
+    
 }
