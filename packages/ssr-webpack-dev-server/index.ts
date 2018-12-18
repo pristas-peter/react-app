@@ -81,17 +81,18 @@ export function watch(
             const {fs, webpackStats} = res.locals as {fs: any, webpackStats: webpack.Stats};
             
             res.locals.readAsset = (asset: string) => 
-            fetch(`${webpackDevserverUrl}${asset}`).then(response => {
-                if (response.ok) {
-                    if (asset.endsWith('.json')) {
-                        return response.json();
-                    }
-    
-                    return response.text();
-                }
-                return Promise.reject(new AssetReadError(response))
-            });
-    
+                fetch(`${webpackDevserverUrl}${asset}`)
+                    .then(response => {
+                        if (response.ok) {
+                            if (asset.endsWith('.json')) {
+                                return response.json();
+                            }
+            
+                            return response.text();
+                        }
+                        return Promise.reject(new AssetReadError(response))
+                    });
+     
             if (lastEndTime !== webpackStats.endTime) {
                 const filename = outputFile(webpackStats);
                 const mapFilename = `${filename}.map`;
@@ -107,8 +108,8 @@ export function watch(
             serverMiddleware(req, res, next);
         });
     
-        app.use((req, res) => {
-            proxy.web(req, res);
+        app.use((req, res, next) => {
+            proxy.web(req, res, {}, next);
         });
     
         const server = http.createServer(app)
