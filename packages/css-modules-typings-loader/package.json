@@ -1,5 +1,5 @@
 {
-  "name": "css-modules-typings-loader",
+  "name": "@react-webpack-utils/css-modules-typings-loader",
   "version": "1.1.3",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
@@ -7,5 +7,5 @@
   "dependencies": {
     "humps": "2.0.1"
   },
-  "gitHead": "2eedf921047a13edb87bfa443486762e7e65008c"
+  "gitHead": "b80201d7e04064b1319067d601d51cb22b662c0d"
 }
