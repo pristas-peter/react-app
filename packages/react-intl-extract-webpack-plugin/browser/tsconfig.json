@@ -8,7 +8,8 @@
       "jsx": "react",
       "lib": ["esnext", "dom"],
       "moduleResolution": "node",
-      "importHelpers": true
+      "importHelpers": true,
+      "sourceMap": true
     },
     "exclude": ["node_modules", "cjs", "es", "**/__tests__/*"]
   }
