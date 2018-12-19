@@ -1,5 +1,4 @@
 import * as path from 'path';
-import {runInThisContext} from 'vm';
 import * as webpack from 'webpack';
 import fetch, { Response } from 'node-fetch';
 import * as express from 'express';
@@ -7,6 +6,7 @@ import * as middleware from 'webpack-dev-middleware';
 import * as httpProxy from 'http-proxy';
 import * as http from 'http';
 import * as compression from 'compression';
+import * as requireFromString from 'require-from-string';
 
 const sourceMap = new Map<string, Buffer>();
 
@@ -100,8 +100,9 @@ export function watch(
                 if (fs.existsSync(mapFilename)) {
                     sourceMap.set(filename, fs.readFileSync(mapFilename));
                 }
-    
-                serverMiddleware = runInThisContext(fs.readFileSync(filename), filename).default;
+
+
+                serverMiddleware = requireFromString(fs.readFileSync(filename, 'utf-8'), filename).default;
             }
     
             lastEndTime = webpackStats.endTime;
