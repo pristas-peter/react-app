@@ -13,7 +13,7 @@
     "webpack-sources": "^1.3.0"
   },
   "scripts": {
-    "prepublish": "cd browser && yarn && yarn build"
+    "prepare": "cd browser && yarn && yarn build"
   },
   "gitHead": "1eda3dfb2946b205bbcf72f1f1e519b97b7e1882",
   "publishConfig": {
