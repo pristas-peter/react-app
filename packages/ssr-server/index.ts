@@ -48,6 +48,8 @@ export default function serve(middleware: express.RequestHandler, buildPath: str
             middleware(req, res, next);
         });
 
+        app.use(express.static(buildPath));
+
         app.listen(port, host, (err?: Error) => {
             if (err) {
                 reject(err);
