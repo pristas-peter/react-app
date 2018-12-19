@@ -1,4 +1,3 @@
-import 'source-map-support/register';
 import * as express from 'express';
 import {readFile} from 'fs';
 import * as path from 'path';

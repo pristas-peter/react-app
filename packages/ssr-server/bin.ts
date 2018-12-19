@@ -1,3 +1,4 @@
+import 'source-map-support/register';
 import {ArgumentParser} from 'argparse';
 import * as path from 'path';
 import serve from './index';
