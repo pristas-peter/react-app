@@ -150,7 +150,7 @@ function checkDefinitions() {
     data = fs.readFileSync(envDefinitionsFile, 'utf-8');
   }
 
-  data = ensureIfPresent(`/// <reference types="@react-app/create-react-app" />`, data);
+  data = ensureIfPresent(`/// <reference types="@react-app/react-scripts" />`, data);
   data = ensureIfPresent(`/// <reference types="webpack-env" />`, data);
 
   fs.writeFileSync(envDefinitionsFile, data);
