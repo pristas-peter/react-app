@@ -4,7 +4,7 @@
   "main": "./index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
-  "gitHead": "1eda3dfb2946b205bbcf72f1f1e519b97b7e1882",
+  "gitHead": "a46602c08df58079d9d812be7f0a91a2cff2d2d0",
   "publishConfig": {
     "access": "public"
   }

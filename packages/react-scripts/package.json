@@ -34,5 +34,9 @@
   "bin": {
     "@react-app-react-scripts": "./index.js"
   },
-  "types": "./react-scripts.d.ts"
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "./react-scripts.d.ts",
+  "gitHead": "a46602c08df58079d9d812be7f0a91a2cff2d2d0"
 }
