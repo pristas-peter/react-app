@@ -1,4 +1,9 @@
-# css-modules-react-styled
+# styled
+
+```
+npm i @react-app/styled
+```
+
 
 React HOC to style React components with css modules. Typescript compatible.
 
@@ -11,7 +16,7 @@ test.module.css
 
 test.tsx
 ```
-import Styled from 'css-modules-react-styled';
+import Styled from '@react-app/styled';
 import defaultStyles from './test.module.css';
 
 interface Props {
