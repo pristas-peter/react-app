@@ -11,8 +11,12 @@ module.exports = (...args) => {
     const package = require(packagePath);
 
     Object.keys(package.scripts).forEach(name => {
-        package.scripts[name] = package.scripts[name].replace('react-scripts', '@react-app/react-scripts');
-    })
+        package.scripts[name] = package.scripts[name].replace('react-scripts', '@react-app-react-scripts');
+    });
+
+    ['translations.js', '.alias.js'].forEach((file) => {
+        fs.copyFileSync(path.join(__dirname, 'templates', file), path.join(appPath, file));
+    });
 
     fs.writeFileSync(
         packagePath,

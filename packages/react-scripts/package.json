@@ -2,12 +2,10 @@
   "name": "@react-app/react-scripts",
   "version": "1.1.9",
   "main": "index.js",
-  "peerDependencies": {
-    "@loadable/component": "5.2.2",
-    "@loadable/server": "5.2.2"
-  },
   "dependencies": {
     "@babel/core": "7.1.0",
+    "@loadable/component": "5.2.2",
+    "@loadable/server": "5.2.2",
     "@loadable/babel-plugin": "5.2.2",
     "@loadable/webpack-plugin": "5.2.2",
     "@react-app/css-modules-fix-local-keyframes-loader": "^1.1.9",
@@ -34,7 +32,7 @@
   },
   "license": "MIT",
   "bin": {
-    "@react-app/react-scripts": "./index.js"
+    "@react-app-react-scripts": "./index.js"
   },
   "types": "./react-scripts.d.ts"
 }

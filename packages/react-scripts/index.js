@@ -377,7 +377,6 @@ function addExtensions(config, isTargetNode = false) {
       }));
     }
   } catch (e) {
-    console.error(e);
     if (e.code !== 'MODULE_NOT_FOUND') {
       throw e;
     }
