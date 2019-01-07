@@ -1,5 +1,9 @@
 # react-intl-extract-webpack-plugin
 
+```
+npm i @react-app/react-intl-extract-webpack-plugin
+```
+
 Webpack plugin to extract react-intl translations with suppport for on demand chunk loading per active locale during dynamic imports. Also supports HMR and SSR.
 
 Usage:
@@ -12,7 +16,7 @@ Usage:
         ...
         plugins: [
             ...
-            'react-intl-extract-webpack-plugin/babel',
+            '@react-app/react-intl-extract-webpack-plugin/babel',
             ...
         ]
         metadataSubscribers: [ReactIntlExtractWebpackPlugin.BABEL_LOADER_METADATA_SUBSCRIBER],
@@ -23,7 +27,7 @@ Usage:
 * add plugin to webpack's config:
 
     ```
-    const ReactIntlExtractWebpackPlugin = require('react-intl-extract-webpack-plugin');
+    const ReactIntlExtractWebpackPlugin = require('@react-app/react-intl-extract-webpack-plugin');
 
         plugins: [
             ...
@@ -58,7 +62,7 @@ Usage:
     import React from 'react';
     import ReactDOM from 'react-dom';
     import {IntlProvider, addLocaleData} from 'react-intl';
-    import initialize from 'react-intl-extract-webpack-plugin/browser';
+    import initialize from '@react-app/react-intl-extract-webpack-plugin/browser';
 
     import App from './App';
 

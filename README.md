@@ -1,3 +1,3 @@
 # react-app
 
-Monorepo for various webpack and react packages. More documentation inside its own package in packages folder.
+Monorepo for various webpack and react app packages. More documentation inside its own package in packages folder.
