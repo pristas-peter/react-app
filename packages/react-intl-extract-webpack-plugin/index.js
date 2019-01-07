@@ -51,7 +51,7 @@ class ReactIntlExtractWebpackPlugin {
             try {
                 this.loadTranslations = require(translationsModuleFilename);
             } catch (e) {
-                if (e.code !== 'MODULE_NOT_FOUND') {
+                if (e.code === 'MODULE_NOT_FOUND') {
                     this.loadTranslations = () => Promise.resolve();
                 } else {
                     throw e;

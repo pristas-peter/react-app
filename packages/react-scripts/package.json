@@ -1,0 +1,38 @@
+{
+  "name": "@react-app/react-scripts",
+  "version": "1.1.9",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "7.1.0",
+    "@loadable/component": "5.2.2",
+    "@loadable/server": "5.2.2",
+    "@loadable/babel-plugin": "5.2.2",
+    "@loadable/webpack-plugin": "5.2.2",
+    "@react-app/css-modules-fix-local-keyframes-loader": "^1.1.9",
+    "@react-app/css-modules-modify-specificity-loader": "^1.1.9",
+    "@react-app/css-modules-typings-loader": "^1.1.9",
+    "@react-app/graphql-typings-loader": "^1.1.9",
+    "@react-app/react-intl-extract-webpack-plugin": "^1.1.9",
+    "@react-app/responsive-image-loader": "^1.1.9",
+    "@react-app/ssr-server": "^1.1.9",
+    "@react-app/ssr-webpack-dev-server": "^1.1.9",
+    "@react-app/watcher-webpack-plugin": "^1.1.9",
+    "@types/graphql": "14.0.3",
+    "@types/webpack-env": "1.13.6",
+    "argparse": "1.0.10",
+    "chalk": "^2.0.0",
+    "fs-extra": "7.0.1",
+    "graphql": "^14.0.0",
+    "graphql-tag": "2.10.0",
+    "html-inline-css-webpack-plugin": "1.3.2",
+    "pify": "4.0.1",
+    "react-hot-loader": "4.3.12",
+    "react-scripts": "2.1.1",
+    "webpack": "4.19.1"
+  },
+  "license": "MIT",
+  "bin": {
+    "@react-app-react-scripts": "./index.js"
+  },
+  "types": "./react-scripts.d.ts"
+}
