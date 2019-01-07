@@ -1,5 +1,5 @@
 {
-  "name": "@react-webpack-utils/graphql-typings-loader",
+  "name": "@react-app/graphql-typings-loader",
   "version": "1.1.6",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
