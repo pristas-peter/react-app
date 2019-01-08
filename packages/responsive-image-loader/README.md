@@ -1,10 +1,11 @@
 # responsive-image-loader
 
+Webpack loader to create responsive images. Uses responsive-loader with sharp adapter under the hood with custom predefined options.
+
 ```
 npm i @react-app/responsive-image-loader
 ```
 
-Webpack loader to create responsive images. Uses responsive-loader with sharp adapter under the hood with custom predefined options.
 <br />
 <br />
 Can be used with babel-plugin-named-asset-import (create-react-app) to export responsiveImage instance like so:

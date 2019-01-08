@@ -1,11 +1,10 @@
 # styled
 
+React HOC to style React components with css modules. Typescript compatible.
+
 ```
 npm i @react-app/styled
 ```
-
-
-React HOC to style React components with css modules. Typescript compatible.
 
 test.module.css
 ```

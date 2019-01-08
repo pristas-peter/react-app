@@ -1,11 +1,10 @@
 # react-intl-extract-webpack-plugin
 
+Webpack plugin to extract react-intl translations with suppport for on demand chunk loading per active locale during dynamic imports. Also supports HMR and SSR.
+
 ```
 npm i @react-app/react-intl-extract-webpack-plugin
 ```
-
-Webpack plugin to extract react-intl translations with suppport for on demand chunk loading per active locale during dynamic imports. Also supports HMR and SSR.
-
 Usage:
 
 * get familiar with react-intl ecosystem

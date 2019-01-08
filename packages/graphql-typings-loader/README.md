@@ -1,10 +1,10 @@
 # graphql-typings-loader
 
+Webpack loader to generate TS typings of graphql files as d.ts file alongside source file. Uses apollo-codegen under the hood. Supports #import syntax. If d.ts file contains GraphQL enums, they are also extracted to [filename].types.ts file so they can be used in TS code.
+
 ```
 npm i @react-app/graphql-typings-loader
 ```
-
-Webpack loader to generate TS typings of graphql files as d.ts file alongside source file. Uses apollo-codegen under the hood. Supports #import syntax. If d.ts file contains GraphQL enums, they are also extracted to [filename].types.ts file so they can be used in TS code.
 
 <br />
 To use this loader add it to chain before any graphql loader which outputs document in JS.

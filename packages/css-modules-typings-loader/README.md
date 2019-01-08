@@ -1,10 +1,10 @@
 # css-modules-typings-loader
 
+Webpack loader to generate TS typings of local classnames as [filename].d.ts file alongside source file.
+
 ```
 npm i @react-app/css-modules-typings-loader
 ```
-
-Webpack loader to generate TS typings of local classnames as [filename].d.ts file alongside source file.
 
 <br />
 To use this loader add it to chain after css-loader.
