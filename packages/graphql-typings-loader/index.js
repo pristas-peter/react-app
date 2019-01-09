@@ -101,6 +101,7 @@ function write(filename, data) {
 }
 
 module.exports = function (source) {
+
     this.cacheable();
     const callback = this.async();
 
@@ -109,14 +110,15 @@ module.exports = function (source) {
 
     const {schema: schemaFile, legacy, options} = loadConfig();
 
-    const loadDocumentSource = source => Promise.all(
-        source.split(/[\r\n]+/)
+    const loadDocumentSource = (str, context) => Promise.all(
+        str.split(/[\r\n]+/)
             .map(line => {
                 if (/^#import/.test(line)) {
+                    
                     const match = line.match(/['"](.+)['"]/);
 
                     if (match) {
-                        return pify(loader.resolve)(loader.context, match[1])
+                        return pify(loader.resolve)(context, match[1])
                             .then(file => {
                                 if (files.has(file)) {
                                     return Promise.resolve('');
@@ -126,7 +128,7 @@ module.exports = function (source) {
                                 loader.addDependency(file);
 
                                 return pify(fs.readFile)(file, 'utf8')
-                                    .then(loadDocumentSource);
+                                    .then(data => loadDocumentSource(data, path.dirname(file)));
                             })
                     } else {
                         return Promise.reject(new Error('Could not parse #import statement'))
@@ -157,7 +159,7 @@ module.exports = function (source) {
             if (!schema) {
                 return null;
             }
-            return loadDocumentSource(source)
+            return loadDocumentSource(source, loader.context)
                 .then((documentSource) => {
                     const clientSchema = buildClientSchema(schema);
                     const document = parse(documentSource);
@@ -193,7 +195,6 @@ module.exports = function (source) {
         })
         .then(() => callback(null, source))
         .catch(err => {
-            console.error(err, err.stack);
-            callback(err)
+            callback(err);
         });
 }
