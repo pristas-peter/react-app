@@ -1,6 +1,6 @@
 {
   "name": "@react-app/react-scripts",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index.js",
   "dependencies": {
     "@babel/core": "7.1.0",
@@ -11,7 +11,7 @@
     "@react-app/css-modules-fix-local-keyframes-loader": "^1.2.2",
     "@react-app/css-modules-modify-specificity-loader": "^1.2.2",
     "@react-app/css-modules-typings-loader": "^1.2.2",
-    "@react-app/graphql-typings-loader": "^1.2.2",
+    "@react-app/graphql-typings-loader": "^1.2.3",
     "@react-app/react-intl-extract-webpack-plugin": "^1.2.2",
     "@react-app/responsive-image-loader": "^1.2.2",
     "@react-app/ssr-server": "^1.2.1",
