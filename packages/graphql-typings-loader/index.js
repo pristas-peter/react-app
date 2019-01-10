@@ -4,6 +4,7 @@ const {compileToLegacyIR} = require('apollo-codegen-core/lib/compiler/legacyIR')
 const {compileToIR} = require('apollo-codegen-core/lib/compiler');
 const {generateGlobalSource, generateLocalSource} = require('apollo-codegen-typescript');
 const {generateSource} = require('apollo-codegen-typescript-legacy');
+const {getOptions} = require('loader-utils');
 const {buildClientSchema, parse} = require('graphql');
 const fs = require('fs');
 const path = require('path');
@@ -25,11 +26,12 @@ function findSchemaData(data) {
     return null;
 }
 
-function loadConfig() {
-    let config = {}; 
+
+function getConfig(loader) {
+    const config = getOptions(loader); 
 
     try {
-        config = require(path.join(process.cwd(), '.graphqltypings'));
+        Object.assign(config, require(path.join(process.cwd(), '.graphqltypings')));
     } catch (err) {
         // pass
     }
@@ -108,7 +110,7 @@ module.exports = function (source) {
     const loader = this;
     const files = new Set();
 
-    const {schema: schemaFile, legacy, options} = loadConfig();
+    const {schema: schemaFile, legacy, options} = getConfig(loader);
 
     const loadDocumentSource = (str, context) => Promise.all(
         str.split(/[\r\n]+/)
