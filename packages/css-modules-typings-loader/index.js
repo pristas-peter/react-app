@@ -1,4 +1,4 @@
-const {basename} = require('path');
+const path = require('path');
 const {readFile, writeFile} = require('fs');
 const {camelize} = require('humps');
 const {getOptions} = require('loader-utils');
@@ -51,6 +51,9 @@ module.exports = function loader(webpackSource) {
     
     if (match) {
         const config = getConfig(this);
+
+        console.log(config);
+
         const locals = [];
 
         match[1].split('\n').map(s => {
@@ -63,7 +66,7 @@ module.exports = function loader(webpackSource) {
 
         if (locals.length) {
             const suffix = config.suffix(this.resource);
-            const name = `${validateName(capitalizeFirstLetter(camelize(stripExtension(basename(this.resource)))))}${suffix}`;
+            const name = `${validateName(capitalizeFirstLetter(camelize(stripExtension(path.basename(this.resource)))))}${suffix}`;
 
             const output = `/* tslint:disable */
 // This file was automatically generated and should not be edited.
