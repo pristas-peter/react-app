@@ -44,5 +44,15 @@ In production:
   ],
 }
 ```
+<br>
 
+**Configuration**
+
+You can create .cssmodulestypings.js config file in the current working directory or pass options object via loader options. It supports following:
+
+```
+{
+    suffix: (filename: string) => string // add custom suffix to generated interface name (defaults to Styles)
+}
+```
 

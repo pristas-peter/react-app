@@ -22,7 +22,11 @@ To use this loader add it to chain before any graphql loader which outputs docum
 
 By default it tries to read './schema.json' in the current working directory (directory from which webpack was run). If it does not exist, it outputs nothing. 
 
-You can create .graphqltypings.js config file in the current working directory. It supports following:
+<br />
+
+**Configuration**
+
+You can create .graphqltypings.js config file in the current working directory or pass options object via loader options. It supports following:
 
 ```
 {
@@ -41,6 +45,8 @@ You can create .graphqltypings.js config file in the current working directory. 
         }
 }
 ```
+
+**Scalars**
 
 By default custom graphql scalars have prefix 'GraphQLScalar'. You can that create graphql-scalars.d.ts file in your root directory with mappings to ts(js) types. 
 
