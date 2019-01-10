@@ -4,7 +4,7 @@ const {camelize} = require('humps');
 const {getOptions} = require('loader-utils');
 
 function getConfig(loader) {
-    const config = getOptions(loader); 
+    const config = getOptions(loader) || {}; 
 
     try {
         Object.assign(config, require(path.join(process.cwd(), '.cssmodulestypings')));

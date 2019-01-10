@@ -28,7 +28,7 @@ function findSchemaData(data) {
 
 
 function getConfig(loader) {
-    const config = getOptions(loader); 
+    const config = getOptions(loader) || {}; 
 
     try {
         Object.assign(config, require(path.join(process.cwd(), '.graphqltypings')));
@@ -87,7 +87,7 @@ function generateTypesOutput(typings) {
 
 function write(filename, data) {
     return pify(fs.exists, {errorFirst: false})(filename)
-        .then(exits => {
+        .then(exists => {
             if (exists) {
                 return pify(fs.readFile)(filename, 'utf8')
                     .then(content => {
@@ -103,7 +103,6 @@ function write(filename, data) {
 }
 
 module.exports = function (source) {
-
     this.cacheable();
     const callback = this.async();
 
