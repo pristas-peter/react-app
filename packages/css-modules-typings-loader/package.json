@@ -5,7 +5,8 @@
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "humps": "2.0.1"
+    "humps": "2.0.1",
+    "loader-utils": "1.2.3"
   },
   "gitHead": "a46602c08df58079d9d812be7f0a91a2cff2d2d0",
   "publishConfig": {
