@@ -52,8 +52,6 @@ module.exports = function loader(webpackSource) {
     if (match) {
         const config = getConfig(this);
 
-        console.log(config);
-
         const locals = [];
 
         match[1].split('\n').map(s => {
