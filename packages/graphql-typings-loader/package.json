@@ -1,6 +1,6 @@
 {
   "name": "@react-app/graphql-typings-loader",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
@@ -11,8 +11,8 @@
     "apollo-codegen-core": "0.28.1",
     "apollo-codegen-typescript": "0.28.1",
     "apollo-codegen-typescript-legacy": "0.28.1",
-    "pify": "4.0.1",
-    "loader-utils": "1.2.3"
+    "loader-utils": "1.2.3",
+    "pify": "4.0.1"
   },
   "gitHead": "a46602c08df58079d9d812be7f0a91a2cff2d2d0",
   "publishConfig": {
