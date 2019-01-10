@@ -1,6 +1,6 @@
 {
   "name": "@react-app/css-modules-typings-loader",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "main": "index.js",
   "author": "Peter Pristas <pristas.peter@gmail.com>",
   "license": "MIT",
