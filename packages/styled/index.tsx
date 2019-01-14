@@ -44,20 +44,21 @@ export default function withStyled<S extends {}>(styles: S) {
     return <C extends React.ComponentType<P>, P extends {styles: S} = any>(Component: C) => {
         type InferedProps = InferProps<C>;
         type Props = Pick<InferedProps, Exclude<keyof InferedProps, 'styles'>>;
-
+        type R = InferRef<C>;
+    
         const Context = React.createContext<S>(styles);
 
-        class Styled extends React.Component<Props> {
+        class Styled extends React.Component<Props & {forwardedRef?: React.Ref<R>}> {
             static contextType = Context;
             context!: S;
 
             render() {
-                const {forwardedRef, ...rest} = this.props as any;
-                return React.createElement(Component, {styles: this.context, ref: forwardedRef, ...rest});
+                const {forwardedRef, ...rest} = this.props;
+                return React.createElement(Component, {styles: this.context, ref: forwardedRef, ...rest} as any);
             }
         }
 
-        type R = InferRef<C>;
+        
 
         const ForwardRefStyled = React.forwardRef<R, Props>((props: any, ref) => <Styled forwardedRef={ref} {...props} />);
         
@@ -71,7 +72,7 @@ export default function withStyled<S extends {}>(styles: S) {
         }
         
         (ForwardRefStyled as any).defaultStyles = styles;
-        (ForwardRefStyled as any).extend = (newStyles: {}) => withStyled(compose(newStyles, styles))<P, C>(Component);
+        (ForwardRefStyled as any).extend = (newStyles: {}) => withStyled(compose(newStyles, styles))(Component);
         (ForwardRefStyled as any).compose = (newStyles: {}) => React.memo(
             ({children}) => <Context.Provider value={compose(newStyles, styles)} children={children} />
         );

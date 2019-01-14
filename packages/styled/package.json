@@ -16,11 +16,11 @@
     "tslib": "^1.9.3"
   },
   "devDependencies": {
-    "@types/node": "10.12.12",
-    "@types/react": "^16.7.13",
-    "typescript": "^3.0.0"
+    "@types/node": "10.12.18",
+    "@types/react": "^16.7.18",
+    "typescript": "^3.2.2"
   },
-  "gitHead": "a46602c08df58079d9d812be7f0a91a2cff2d2d0",
+  "gitHead": "bc31534882dfce9acf982f23bd4f2f6efef7faa9",
   "publishConfig": {
     "access": "public"
   }
