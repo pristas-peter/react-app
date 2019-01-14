@@ -41,7 +41,7 @@ type StyledComponent<P, S, R> = React.ForwardRefExoticComponent<P & React.ClassA
 }
 
 export default function withStyled<S extends {}>(styles: S) {
-    return <P extends {styles: S}, C extends React.ComponentType<P>>(Component: C) => {
+    return <C extends React.ComponentType<P>, P extends {styles: S} = any>(Component: C) => {
         type InferedProps = InferProps<C>;
         type Props = Pick<InferedProps, Exclude<keyof InferedProps, 'styles'>>;
 
