@@ -43,8 +43,10 @@ type StyledComponent<P, S, R> = React.ForwardRefExoticComponent<P & React.ClassA
 export default function withStyled<S extends {}>(styles: S) {
     return <C extends React.ComponentType<P>, P extends {styles: S} = any>(Component: C) => {
         type InferedProps = InferProps<C>;
-        type Props = Pick<InferedProps, Exclude<keyof InferedProps, 'styles'>>;
         type R = InferRef<C>;
+    
+        type DefaultProps = Pick<P, keyof typeof Component['defaultProps']>;
+        type Props = Pick<InferedProps, Exclude<keyof InferedProps, keyof DefaultProps | 'styles'>> & {[K in keyof DefaultProps]+?: DefaultProps[K]};
     
         const Context = React.createContext<S>(styles);
 
@@ -57,8 +59,6 @@ export default function withStyled<S extends {}>(styles: S) {
                 return React.createElement(Component, {styles: this.context, ref: forwardedRef, ...rest} as any);
             }
         }
-
-        
 
         const ForwardRefStyled = React.forwardRef<R, Props>((props: any, ref) => <Styled forwardedRef={ref} {...props} />);
         
