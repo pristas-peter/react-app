@@ -280,7 +280,7 @@ class ReactIntlExtractWebpackPlugin {
                     if (typeof stringOrSource === 'string') {
                         string = stringOrSource;
                     } else if (stringOrSource instanceof Source) {
-                        string = s.source()
+                        string = stringOrSource.source()
                     }
 
                     if (string && WEBPACK_REQUIRE_REGEX.test(string)) {
