@@ -1,6 +1,6 @@
 {
   "name": "@react-app/react-scripts",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "main": "index.js",
   "dependencies": {
     "@babel/core": "7.1.0",
@@ -14,7 +14,7 @@
     "@react-app/graphql-typings-loader": "^1.2.5",
     "@react-app/react-intl-extract-webpack-plugin": "^1.2.11",
     "@react-app/responsive-image-loader": "^1.2.2",
-    "@react-app/ssr-server": "^1.2.1",
+    "@react-app/ssr-server": "^1.2.12",
     "@react-app/ssr-webpack-dev-server": "^1.2.2",
     "@react-app/watcher-webpack-plugin": "^1.2.2",
     "@types/graphql": "14.0.3",
