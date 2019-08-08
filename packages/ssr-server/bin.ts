@@ -34,7 +34,7 @@ parser.addArgument('--port', {
 const args = parser.parseArgs();
 const middlewarePath = path.isAbsolute(args.middleware) ? args.middleware : path.join(process.cwd(), args.middleware);
 
-serve(require(middlewarePath).default, args.buildPath, args.host, args.port)
+serve(require(middlewarePath).default, args.build_path, args.host, args.port)
     .catch(err => {
         throw(err)
     });
